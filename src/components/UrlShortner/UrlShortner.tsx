@@ -5,12 +5,11 @@ dotenv.config();
 
 const UrlShortener = () => {
 
-    var configValue = process.env.REACT_APP_TOKEN;
-    console.log('configValue:', configValue)
+    const configValue: string = process.env.REACT_APP_TOKEN!
     const bitly = new BitlyClient(configValue, {});
 
     const [url, setUrl] = useState("")
-    const [shortenUrl, setShortenUrl] = useState("")
+    const [shortenUrl, setShortenUrl] = useState<string | undefined>(undefined)
 
 
     const getData = async (url: string) => {
@@ -45,6 +44,7 @@ const UrlShortener = () => {
                     handleClick(url)
                 }}
             >Shorten</button>
+            <div>{shortenUrl}</div>
         </div>
     )
 }
